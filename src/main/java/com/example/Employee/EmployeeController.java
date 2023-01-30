@@ -28,7 +28,7 @@ public class EmployeeController {
 
     }
 
-    @DeleteMapping("/delete_user/{emId}")
+    @DeleteMapping("/delete_emp/{emId}")
     public String deleteEmp(@PathVariable("emId") int emId) {
         if(!db.containsKey(emId))
             return "Invalid User Id";
@@ -38,5 +38,15 @@ public class EmployeeController {
 
     }
 
+    @PutMapping("/update_emp")
+    public String updateEmp(@RequestParam("emId") int emId ,@RequestParam("salary") int salary) {
+
+        if(!db.containsKey(emId))
+            return "Invalid Id";
+
+        db.get(emId).setSalary(salary);
+        return "upadte Successful";
+
+    }
 
 }
